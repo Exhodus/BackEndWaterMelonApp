@@ -35,6 +35,7 @@ public class Patrons {
     @JsonManagedReference
     private List<PatronsMaterials> _materials;
 
+    //AAAAAAAAAAA
     @OneToMany(mappedBy = "_idPatron", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Images> _images;
