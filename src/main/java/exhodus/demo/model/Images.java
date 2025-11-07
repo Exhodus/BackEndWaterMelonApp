@@ -14,7 +14,7 @@ public class Images {
     @ManyToOne
     @JoinColumn(name = "_images")
     @JsonBackReference
-    private int _idPatron;
+    private Patrons  _idPatron;
 
     @Column(name = "url", unique = true)
     private String _url;
@@ -25,15 +25,22 @@ public class Images {
     public Images() {
     }
 
+    public Images(int id, Patrons _idPatron, String _url, String _type) {
+        this.id = id;
+        this._idPatron = _idPatron;
+        this._url = _url;
+        this._type = _type;
+    }
+
     public int getId() {
         return id;
     }
 
-    public int get_idPatron() {
+    public Patrons get_idPatron() {
         return _idPatron;
     }
 
-    public void set_idPatron(int _idPatron) {
+    public void set_idPatron(Patrons _idPatron) {
         this._idPatron = _idPatron;
     }
 
@@ -50,13 +57,6 @@ public class Images {
     }
 
     public void set_type(String _type) {
-        this._type = _type;
-    }
-
-    public Images(int _idPatron, String _url, String _type) {
-        this.id = id;
-        this._idPatron = _idPatron;
-        this._url = _url;
         this._type = _type;
     }
 

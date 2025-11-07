@@ -15,6 +15,7 @@ public class PatronsController {
     @Autowired
     PatronsService service;
 
+    //CREATE
     @GetMapping("/create")
     public String createPatron(@RequestParam String name, @RequestParam String desc, @RequestParam int diff,  @RequestParam int time, @RequestParam int user){
         System.err.println("CONTROLLER: "+name + " "+ desc + " "+ diff +" "+ time+" "+user );
@@ -26,8 +27,17 @@ public class PatronsController {
         }
     }
 
+    //GETS
     @GetMapping("/user/{id}")
     public List<Patrons> getPatronsByUserId(@PathVariable int id){
         return service.getPatronsByUserId(id);
     }
+
+    @GetMapping("/{id}")
+    public Patrons getPatronById(@PathVariable int id){
+        return service.getPatronById(id);
+    }
+
+    //UPDATE
+
 }

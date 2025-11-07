@@ -24,4 +24,16 @@ public interface PatronsRepository extends CrudRepository<Patrons, Integer> {
             WHERE user_id = :id
             """, nativeQuery = true)
     List<Patrons> getAllPatronsByUserId(int id);
+
+
+    @Query(value = """
+            UPDATE patrons p
+            SET p.patron_name = :name,
+                p.description = :desc,
+                p.difficulty = :diff,
+                p.estimated_time = :time,
+                p._user_id = :userId
+            WHERE p.id = :id
+            """, nativeQuery = true)
+    int updatePatron(int id, String name, String desc, int diff, int time, int userId);
 }
