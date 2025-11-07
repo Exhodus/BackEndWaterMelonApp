@@ -1,5 +1,6 @@
 package exhodus.demo.controllers;
 
+import exhodus.demo.model.Users;
 import exhodus.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +23,12 @@ public class UsersController {
     @GetMapping("/create")
     public  String addNewUser(@RequestParam String nom, @RequestParam String mail, @RequestParam String pass){
         int res = service.addNewUser(nom,mail,pass);
-        if(res == 1){
-            return "Todo ok.";
-        } else {
-            return "Error.";
-        }
+
+        return (res == 1 ? "Todo OK" : "CAGASTE CRAK");
     }
 
+    @GetMapping("/{id}")
+    public Users findUserById(@PathVariable int id){
+        return service.findById(id);
+    }
 }

@@ -38,6 +38,13 @@ public class PatronsService {
             case null, default -> diff = 0;
         }
 
-        return patronsRepository.updatePatron(patron.getId(), patron.get_patronName(), patron.get_description(), diff, patron.get_estimatedTime(), patron.get_userId());
+        return patronsRepository.updatePatron(
+                patron.getId(),
+                patron.get_patronName(),
+                patron.get_description(),
+                diff,
+                patron.get_estimatedTime(),
+                patron.get_patronUser().get_id()
+        );
     }
 }

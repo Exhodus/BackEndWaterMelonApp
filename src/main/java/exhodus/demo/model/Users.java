@@ -22,7 +22,7 @@ public class Users {
     @Column(name="pass",nullable = false)
     private String _pass;
 
-    @OneToMany(mappedBy = "_userId")
+    @OneToMany(mappedBy = "patronUser")
     private List<Patrons> patrons;
     //Constructors
     public Users() {

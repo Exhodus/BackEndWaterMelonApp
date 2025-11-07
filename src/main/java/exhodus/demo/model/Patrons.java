@@ -27,9 +27,9 @@ public class Patrons {
     @Column(name = "estimated_time")
     private int _estimatedTime;
 
-
+    @ManyToOne
     @JoinColumn(name = "user_id")
-    private int _userId;
+    private Users patronUser;
 
     @OneToMany(mappedBy = "patron", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -48,7 +48,6 @@ public class Patrons {
         this._description = _description;
         this._difficulty = _difficulty;
         this._estimatedTime = _estimatedTime;
-        this._userId = _userId;
         this._materials = _materials;
         this._images = _images;
     }
@@ -89,12 +88,12 @@ public class Patrons {
         this._estimatedTime = _estimatedTime;
     }
 
-    public int get_userId() {
-        return _userId;
+    public Users get_patronUser() {
+        return patronUser;
     }
 
-    public void set_userId(int _userId) {
-        this._userId = _userId;
+    public void set_patronUser(Users _userId) {
+        this.patronUser = _userId;
     }
 
     @Override
@@ -105,7 +104,7 @@ public class Patrons {
                 ", _description='" + _description + '\'' +
                 ", _difficulty=" + _difficulty +
                 ", _estimatedTime=" + _estimatedTime +
-                ", _userId=" + _userId +
+                ", patronUser=" + patronUser +
                 ", _materials=" + _materials +
                 ", _images=" + _images +
                 '}';

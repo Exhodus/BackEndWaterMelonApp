@@ -24,7 +24,7 @@ public class Materials {
     @Column(name="color")
     private String _color;
 
-    @OneToMany
+    @OneToMany(mappedBy = "material")
     @JsonBackReference
     private List<PatronsMaterials> _patrons;
 

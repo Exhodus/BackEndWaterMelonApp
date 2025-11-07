@@ -18,4 +18,6 @@ public interface UserRepository extends CrudRepository<Users, Integer> {
             values (:nom, :mail, :pass, :nom)
             """, nativeQuery = true)
     int addNewUser(String nom, String mail, String pass);
+
+
 }
