@@ -35,6 +35,11 @@ public class Users {
         this._pass = _pass;
     }
 
+    public Users( String _userName, String _pass) {
+        this._userName = _userName;
+        this._pass = _pass;
+    }
+
     public int get_id() {
         return id;
     }

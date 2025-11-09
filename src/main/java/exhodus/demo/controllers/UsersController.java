@@ -31,4 +31,10 @@ public class UsersController {
     public Users findUserById(@PathVariable int id){
         return service.findById(id);
     }
+
+    @PostMapping("/auth/login")
+    public int authUser(@RequestBody Users user){
+        System.err.println(user.toString());
+        return service.authUser(user.get_userName(), user.get_pass());
+    }
 }

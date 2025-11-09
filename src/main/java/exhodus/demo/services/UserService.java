@@ -2,6 +2,7 @@ package exhodus.demo.services;
 
 import exhodus.demo.model.Users;
 import exhodus.demo.repositories.UserRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,11 @@ public class UserService {
 
     public Users findById (int id) {
         return userRepository.findById(id).get();
+    }
+
+    public int authUser(String nom, String pass){
+        int num = userRepository.authUser(nom, pass);
+        System.err.println("NUM EN SERVICE USER: "+num);
+        return num;
     }
 }

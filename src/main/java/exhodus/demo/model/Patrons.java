@@ -7,6 +7,7 @@ import exhodus.demo.enums.Difficulty;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table
@@ -34,6 +35,10 @@ public class Patrons {
     @OneToMany(mappedBy = "patron", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<PatronsMaterials> _materials;
+
+    @Column(columnDefinition = "json") // si tu DB lo soporta (MySQL 5.7+, PostgreSQL 9.4+)
+    @Convert(converter = MapToJsonConverter.class)
+    private Map<Integer, String> pasos;
 
     @OneToMany(mappedBy = "_idPatron", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
