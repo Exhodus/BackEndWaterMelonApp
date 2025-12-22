@@ -36,7 +36,7 @@ public class Patrons {
     @JsonManagedReference
     private List<PatronsMaterials> _materials;
 
-    @Column(columnDefinition = "json") // si tu DB lo soporta (MySQL 5.7+, PostgreSQL 9.4+)
+    @Column(columnDefinition = "json")
     @Convert(converter = MapToJsonConverter.class)
     private Map<Integer, String> pasos;
 

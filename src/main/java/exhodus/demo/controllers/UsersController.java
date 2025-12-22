@@ -33,7 +33,7 @@ public class UsersController {
     }
 
     @PostMapping("/auth/login")
-    public int authUser(@RequestBody Users user){
+    public Users authUser(@RequestBody Users user){
         System.err.println(user.toString());
         return service.authUser(user.get_userName(), user.get_pass());
     }

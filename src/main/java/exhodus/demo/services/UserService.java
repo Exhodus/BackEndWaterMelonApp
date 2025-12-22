@@ -6,6 +6,8 @@ import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     @Autowired
@@ -19,9 +21,10 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
-    public int authUser(String nom, String pass){
-        int num = userRepository.authUser(nom, pass);
-        System.err.println("NUM EN SERVICE USER: "+num);
-        return num;
+    public Users authUser(String nom, String pass){
+        Optional<Users> userOpt = userRepository.authUser(nom, pass);
+
+        System.err.println("EN SERVICE USER: "+userOpt.get().get_userName());
+        return userOpt.orElse(null);
     }
 }

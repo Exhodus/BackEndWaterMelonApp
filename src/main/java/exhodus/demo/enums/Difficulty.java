@@ -1,5 +1,5 @@
 package exhodus.demo.enums;
 
 public enum Difficulty {
-    EASY,MEDUIM,HARD
+    EASY,MEDUIM,HARD,NENA
 }
