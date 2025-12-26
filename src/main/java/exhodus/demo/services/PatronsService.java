@@ -3,31 +3,41 @@ package exhodus.demo.services;
 import exhodus.demo.DTOS.PatronSimpleDTO;
 import exhodus.demo.enums.Difficulty;
 import exhodus.demo.model.Patrons;
+import exhodus.demo.model.Users;
 import exhodus.demo.repositories.PatronsRepository;
+import exhodus.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PatronsService {
     @Autowired
     PatronsRepository patronsRepository;
+    @Autowired
+    UserRepository userRepository;
 
-    public ResponseEntity<?> createPatron(String name, String desc, int diff, int time, int user){
+    public Patrons createPatron(String name, String desc, String diff, int time, int user){
 
         System.err.println("DESCRIPCION EN SERVICE: "+desc);
 
-        int filas = patronsRepository.createPatron(name, desc, diff, time, user);
+        Optional<Users> usuario = userRepository.findById(user);
 
-        if (filas > 0) {
-            return ResponseEntity.ok("Patrón creado");
-        } else {
-            return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body("No se insertó ningún registro");
+        if(usuario != null) {
+            Patrons patron = new Patrons();
+            patron.set_patronName(name);
+            patron.set_patronUser(usuario.get());
+            patron.set_description(desc);
+            patron.set_difficulty(Difficulty.valueOf(diff));
+            patron.set_estimatedTime(time);
+            return patronsRepository.save(patron);
         }
+
+        return null;
     }
 
     public List<PatronSimpleDTO> getPatronsByUserId(int id){
@@ -59,4 +69,5 @@ public class PatronsService {
                 patron.get_patronUser().get_id()
         );
     }
+
 }

@@ -4,7 +4,7 @@ public class PatronInsertDTO {
 
     private String nombre;
     private String descripcion;
-    private Integer dificultad;
+    private String dificultad;
     private Integer tiempoEstimadoHoras;
 
     public PatronInsertDTO() {
@@ -12,7 +12,7 @@ public class PatronInsertDTO {
 
     public PatronInsertDTO(String nombre,
                            String descripcion,
-                           Integer dificultad,
+                           String dificultad,
                            Integer tiempoEstimadoHoras) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -36,11 +36,11 @@ public class PatronInsertDTO {
         this.descripcion = descripcion;
     }
 
-    public Integer getDificultad() {
+    public String getDificultad() {
         return dificultad;
     }
 
-    public void setDificultad(Integer dificultad) {
+    public void setDificultad(String dificultad) {
         this.dificultad = dificultad;
     }
 
